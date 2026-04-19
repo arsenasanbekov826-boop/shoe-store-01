@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Магазин обуви "Street Pulses"</title>
+
+<style>
+/* Общие стили страницы */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(
+        to bottom,
+        #DAF1DE 0%,
+        #8EB69B 40%,
+        #235347 70%,
+        #163832 100%
+    );
+    background-attachment: fixed;
+    position: relative;
+    overflow-x: hidden;
+    color: #f0f0f0; 
+}
+
+header {
+    background-color: rgba(58, 95, 73, 0.6);
+    color: #e0e0e0;
+    padding: 20px;
+    text-align: center;
+    backdrop-filter: blur(8px);
+}
+
+/* Стили навигации */
+nav {
+    background-color: rgba(58, 95, 73, 0.5);
+    padding: 10px;
+    text-align: center;
+    backdrop-filter: blur(8px);
+}
+
+nav a {
+    color: #daf1de;
+    text-decoration: none;
+    margin: 15px;
+    font-weight: 600;
+}
+
+nav a:hover {
+    color: #ffffff;
+}
+
+/* Сетка товаров */
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+/* Стиль карточки */
+.card {
+    background: rgba(58, 95, 73, 0.7);
+    width: 250px;
+    margin: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.25);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #daf1de;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button {
+    background-color: #163832;
+    color: #daf1de;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+button:hover {
+    background-color: #8EB69B;
+}
+
+footer {
+    background-color: rgba(58, 95, 73, 0.6);
+    color: #e0e0e0;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+/* Боковая панель */
+.product-panel {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100%;
+    background: #daf1de;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+    transition: right 0.4s ease;
+    padding: 20px;
+    overflow-y: auto;
+    z-index: 1000;
+    color: #163832;
+    box-sizing: border-box;
+}
+
+.product-panel.active {
+    right: 0;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* Затемнение при открытии панели */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    display: none;
+    z-index: 999;
+}
+
+.overlay.active {
+    display: block;
+}
+
+@media (max-width: 600px) {
+    .container { flex-direction: column; align-items: center; }
+    .product-panel { width: 100%; }
+}
+</style>
+
+<script>
+// Функция для открытия панели товара
+function openProduct(title, price, description, image) {
+    document.getElementById("panelTitle").innerText = title;
+    document.getElementById("panelPrice").innerText = price;
+    document.getElementById("panelDescription").innerText = description;
+    document.getElementById("panelImage").src = image;
+
+    document.getElementById("productPanel").classList.add("active");
+    document.getElementById("overlay").classList.add("active");
+}
+
+// Функция для закрытия панели
+function closeProduct() {
+    document.getElementById("productPanel").classList.remove("active");
+    document.getElementById("overlay").classList.remove("active");
+}
+</script>
+
+</head>
+<body>
+
+<header>
+    <h1>Магазин обуви "Street Pulses"</h1>
+    <p>Стиль и комфорт каждый день</p>
+</header>
+
+<nav>
+    <a href="index.html">Главная</a>
+    <a href="men.html" target="_blank">Мужская обувь</a>
+    <a href="women.html" target="_blank">Женская обувь</a>
+</nav>
+
+<div class="container">
+
+    <div class="card">
+        <img src="https://хасл.рф/storage/import_files/2c/2cb354eeb4e911eebaf32c44fd7ae203_a0889abfeb7211eebaf42c44fd7ae203.jpg"
+             onclick="openProduct('Adidas Samba OG', '13 000 сом', 'Легендарная классика, вернувшаяся из архивов. Эти кроссовки выполнены из мягкой кожи с замшевыми вставками и узнаваемой резиновой подошвой. Идеальный выбор для создания ретро-образа в современном стиле.', this.src)">
+        <h3>Adidas Samba OG</h3>
+        <p>Цена: 13 000 сом</p>
+        <button onclick="openProduct('Adidas Samba OG', '13 000 сом', 'Легендарная классика, вернувшаяся из архивов. Эти кроссовки выполнены из мягкой кожи с замшевыми вставками и узнаваемой резиновой подошвой. Идеальный выбор для создания ретро-образа в современном стиле.', this.parentElement.querySelector('img').src)">Подробнее</button>
+    </div>
+
+    <div class="card">
+        <img src="https://outmaxshop.ru/components/com_jshopping/files/img_products/34389/lowa-zephyr-gtx-34389-1.jpg"
+             onclick="openProduct('LOWA Zephyr GTX', '8 500 сом', 'Профессиональные тактические ботинки, обеспечивающие максимальную поддержку стопы. Мембрана GORE-TEX защищает от влаги, сохраняя ноги сухими, а уникальная конструкция подошвы гарантирует устойчивость на любом рельефе.', this.src)">
+        <h3>LOWA Zephyr GTX</h3>
+        <p>Цена: 8 500 сом</p>
+        <button onclick="openProduct('LOWA Zephyr GTX', '8 500 сом', 'Профессиональные тактические ботинки, обеспечивающие максимальную поддержку стопы. Мембрана GORE-TEX защищает от влаги, сохраняя ноги сухими, а уникальная конструкция подошвы гарантирует устойчивость на любом рельефе.', this.parentElement.querySelector('img').src)">Подробнее</button>
+    </div>
+
+    <div class="card">
+        <img src="https://sneakerfreak.ru/wp-content/uploads/2025/06/new-balance-1906-loafer-beige-u1906lnu-6.jpg"
+             onclick="openProduct('New Balance 1906L', '11 500 сом', 'Уникальный гибрид спортивных технологий и классического стиля лоферов. Модель построена на базе беговой подошвы 1906, что обеспечивает непревзойденную амортизацию и комфорт при элегантном внешнем виде.', this.src)">
+        <h3>New Balance 1906L</h3>
+        <p>Цена: 11 500 сом</p>
+        <button onclick="openProduct('New Balance 1906L', '11 500 сом', 'Уникальный гибрид спортивных технологий и классического стиля лоферов. Модель построена на базе беговой подошвы 1906, что обеспечивает непревзойденную амортизацию и комфорт при элегантном внешнем виде.', this.parentElement.querySelector('img').src)">Подробнее</button>
+    </div>
+
+</div>
+
+<div class="overlay" id="overlay" onclick="closeProduct()"></div>
+
+<div class="product-panel" id="productPanel">
+    <span class="close-btn" onclick="closeProduct()">✖</span>
+    <img id="panelImage" src="" style="width:100%; border-radius:10px;">
+    <h2 id="panelTitle"></h2>
+    <h3 id="panelPrice"></h3>
+    <p id="panelDescription"></p>
+    <button onclick="alert('Заказ успешно оформлен!')">Купить</button>
+</div>
+
+<footer>
+    <p>© 2026 Магазин обуви "Street Pulses"</p>
+</footer>
+
+</body>
+</html>

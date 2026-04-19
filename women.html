@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Женская обувь | Street Pulses</title>
+
+<style>
+/* Общие стили страницы — строго по твоему эталону */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(
+        to bottom,
+        #DAF1DE 0%,
+        #8EB69B 40%,
+        #235347 70%,
+        #163832 100%
+    );
+    background-attachment: fixed;
+    position: relative;
+    overflow-x: hidden;
+    color: #f0f0f0; 
+}
+
+header {
+    background-color: rgba(58, 95, 73, 0.6);
+    color: #e0e0e0;
+    padding: 20px;
+    text-align: center;
+    backdrop-filter: blur(8px);
+}
+
+/* Навигация: высота и положение кнопок как в примере */
+nav {
+    background-color: rgba(58, 95, 73, 0.5);
+    padding: 10px;
+    text-align: center;
+    backdrop-filter: blur(8px);
+}
+
+nav a {
+    color: #daf1de;
+    text-decoration: none;
+    margin: 15px;
+    font-weight: 600;
+}
+
+nav a:hover {
+    color: #ffffff;
+}
+
+/* Сетка товаров */
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+/* Стиль карточки */
+.card {
+    background: rgba(58, 95, 73, 0.7);
+    width: 250px;
+    margin: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.25);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #daf1de;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button {
+    background-color: #163832;
+    color: #daf1de;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+button:hover {
+    background-color: #8EB69B;
+}
+
+footer {
+    background-color: rgba(58, 95, 73, 0.6);
+    color: #e0e0e0;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+/* Боковая панель (ширина 400px) */
+.product-panel {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100%;
+    background: #daf1de;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+    transition: right 0.4s ease;
+    padding: 20px;
+    overflow-y: auto;
+    z-index: 1000;
+    color: #163832;
+    box-sizing: border-box;
+}
+
+.product-panel.active {
+    right: 0;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    display: none;
+    z-index: 999;
+}
+
+.overlay.active {
+    display: block;
+}
+
+@media (max-width: 600px) {
+    .container { flex-direction: column; align-items: center; }
+    .product-panel { width: 100%; }
+}
+</style>
+
+<script>
+function openProduct(title, price, description, image) {
+    document.getElementById("panelTitle").innerText = title;
+    document.getElementById("panelPrice").innerText = price;
+    document.getElementById("panelDescription").innerText = description;
+    document.getElementById("panelImage").src = image;
+
+    document.getElementById("productPanel").classList.add("active");
+    document.getElementById("overlay").classList.add("active");
+}
+
+function closeProduct() {
+    document.getElementById("productPanel").classList.remove("active");
+    document.getElementById("overlay").classList.remove("active");
+}
+</script>
+
+</head>
+<body>
+
+<header>
+    <h1>Магазин обуви "Street Pulses"</h1>
+    <p>Женская коллекция</p>
+</header>
+
+<nav>
+    <a href="index.html">Главная</a>
+    <a href="men.html">Мужская обувь</a>
+    <a href="women.html">Женская обувь</a>
+</nav>
+
+<div class="container">
+
+    <div class="card">
+        <img src="https://lionsneakers.ru/image/cache/catalog/products/45900/Adidas-zimnie-krossovki-Adidas-1-1000x750.jpg"
+             onclick="openProduct('Adidas Winter', '11 500 сом', 'Зимние кроссовки с утеплителем и влагостойким верхом. Идеальный выбор для холодной погоды.', this.src)">
+        <h3>Adidas Winter</h3>
+        <p>Цена: 11 500 сом</p>
+        <button onclick="openProduct('Adidas Winter', '11 500 сом', 'Зимние кроссовки с утеплителем и влагостойким верхом. Идеальный выбор для холодной погоды.', this.parentElement.querySelector('img').src)">Подробнее</button>
+    </div>
+
+    <div class="card">
+        <img src="https://lionsneakers.ru/image/cache/catalog/products/42174/Puma-krossovki-Puma-Mayze-Wn%26%23039%3Bs-1-1000x750.jpg"
+             onclick="openProduct('Puma Mayze Wn\'s', '9 800 сом', 'Стильная модель на платформе. Дерзкий дизайн и комфорт для ежедневных прогулок.', this.src)">
+        <h3>Puma Mayze Wn's</h3>
+        <p>Цена: 9 800 сом</p>
+        <button onclick="openProduct('Puma Mayze Wn\'s', '9 800 сом', 'Стильная модель на платформе. Дерзкий дизайн и комфорт для ежедневных прогулок.', this.parentElement.querySelector('img').src)">Подробнее</button>
+    </div>
+
+    <div class="card">
+        <img src="https://lionsneakers.ru/image/cache/catalog/products/43133/Puma-krossovki-Puma-Trinity-1-1000x750.jpg"
+             onclick="openProduct('Puma Trinity', '8 400 сом', 'Ретро-силуэт и современные дышащие материалы. Легкость в каждом движении.', this.src)">
+        <h3>Puma Trinity</h3>
+        <p>Цена: 8 400 сом</p>
+        <button onclick="openProduct('Puma Trinity', '8 400 сом', 'Ретро-силуэт и современные дышащие материалы. Легкость в каждом движении.', this.parentElement.querySelector('img').src)">Подробнее</button>
+    </div>
+
+</div>
+
+<div class="overlay" id="overlay" onclick="closeProduct()"></div>
+
+<div class="product-panel" id="productPanel">
+    <span class="close-btn" onclick="closeProduct()">✖</span>
+    <img id="panelImage" src="" style="width:100%; border-radius:10px;">
+    <h2 id="panelTitle"></h2>
+    <h3 id="panelPrice"></h3>
+    <p id="panelDescription"></p>
+    <button style="width: 100%;" onclick="alert('Заказ успешно оформлен!')">Купить</button>
+</div>
+
+<footer>
+    <p>© 2026 Магазин обуви "Street Pulses"</p>
+</footer>
+
+</body>
+</html>
